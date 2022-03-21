@@ -1,15 +1,17 @@
-package Database;
+package Model;
 
 import Model.Account;
 
-public class Database {
-    public Account Accounts[];
+import java.util.LinkedList;
 
-    public Account[] getAccounts() {
-        return this.Accounts;
+public class Database {
+    public static LinkedList<Account> Accounts[];
+
+    public LinkedList<Account>[] getAccounts() {
+        return Database.Accounts;
     }
 
-    public void setAccounts(Account[] accounts) {
-        this.Accounts = accounts;
+    public void setAccounts(LinkedList<Account>[] accounts) {
+        Database.Accounts = accounts;
     }
 }
