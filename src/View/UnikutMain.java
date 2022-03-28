@@ -11,7 +11,7 @@ public class UnikutMain {
 
             System.out.println("Digite uma das opções: ");
             System.out.println("1 - Login");
-            System.out.println("2 - Cadastrar");
+            System.out.println("2 - Cadastrar ");
 
             int selected = read.nextInt();
 
