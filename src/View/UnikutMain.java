@@ -23,11 +23,11 @@ public class UnikutMain {
 
                 System.out.println("-------------------");
 
-                System.out.print("Digite sua senha: ");
+                System.out.print("Digite sua senha: " );
                 String password = read.next();
 
             }else if( selected == 2){
-                Boolean verify;
+                Boolean verify ;
                 do{
                     System.out.println("-----------------------");
                     System.out.println("Crie seu login: ");
