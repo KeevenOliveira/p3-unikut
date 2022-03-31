@@ -27,6 +27,8 @@ public class Account {
                 String password = read.next();
 
                 System.out.println("----------------------");
+                Account account = new Account(login, name, password);
+                
     } 
 
     public Account (String login, String name, String password) {
