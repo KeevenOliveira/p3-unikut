@@ -35,6 +35,7 @@ public class UnikutMain {
     
                     verify = UserController.verify(login);
                 }while(!verify);
+                
                 System.out.println("------------------------");
                 System.out.println("Digite seu nome: ");
                 
