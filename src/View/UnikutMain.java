@@ -34,16 +34,22 @@ public class UnikutMain {
                     String login = read.next();
     
                     verify = UserController.verify(login);
+                    
                 }while(!verify);
                 
                 System.out.println("------------------------");
-                System.out.println("Digite seu nome: ");
+                System.out.print("Digite seu nome: ");
                 
                 String name = read.next();
 
                 System.out.println("----------------------");
 
-                System.out.println("Crie uma senha:");
+                System.out.print("Crie seu login: ");
+                String login = read.next();
+
+                System.out.println("----------------------");
+
+                System.out.println("Crie uma senha: ");
                 String password = read.next();
 
                 System.out.println("----------------------");
