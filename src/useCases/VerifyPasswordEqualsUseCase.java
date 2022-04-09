@@ -7,6 +7,7 @@ import java.util.Objects;
 public class VerifyPasswordEqualsUseCase {
     public static boolean verify (String login, String password, Database database){
         if(database.isEmpty()){
+            System.out.println("Não existe nenhum usuário cadastrado em nosso banco de dados!");
             return false;
         }else{
             for(int i = 0; i < database.getAccounts().length; i++){

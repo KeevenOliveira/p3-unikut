@@ -11,5 +11,6 @@ class Menu {
         System.out.println("1 - Atualizar nome");
         System.out.println("2 - Atualizar login");
         System.out.println("3 - Atualizar password");
+        System.out.println("4 - Sair");
     }
 }
