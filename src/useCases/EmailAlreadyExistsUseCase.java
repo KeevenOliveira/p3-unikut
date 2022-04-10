@@ -12,7 +12,6 @@ public class EmailAlreadyExistsUseCase {
         }else{
             for(int i = 0; i < database.getAccounts().length; i++){
                 if(Objects.equals(database.accounts[i].getLogin(), login)){
-                    System.out.println("Este login já existe");
                     return true;
                 }
             }

@@ -54,6 +54,15 @@ public class UnikutMain {
 
                                         AccountController.updatePassword(newPassword, loginSession, database);
                                     }
+                                    case 3 -> {
+                                        boolean verify = true;
+                                        do{
+                                            System.out.println("---------------------");
+                                            System.out.println("Digite o login do seu amigo: ");
+                                            String nameFriend = read.next();
+                                            verify = EmailAlreadyExistsUseCase.verify(nameFriend, database);
+                                        }while(!verify);
+                                    }
                                     case 4 -> session = false;
                                 }
 

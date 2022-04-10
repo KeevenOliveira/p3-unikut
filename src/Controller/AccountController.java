@@ -8,6 +8,15 @@ import java.util.Objects;
 
 public class AccountController implements IAccountController {
     public static Account getAccount(String login, Database database) {
+        if(database.isEmpty()){
+            return null;
+        }else{
+            for(int i = 0; i < database.accounts.length; i++) {
+                if(Objects.equals(database.accounts[i].getLogin(), login)){
+                    return database.accounts[i];
+                }
+            }
+        }
         return null;
     }
 
