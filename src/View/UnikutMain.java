@@ -2,6 +2,7 @@ package View;
 
 import java.util.Scanner;
 
+import Controller.AccountController;
 import Database.Database;
 import Model.Account;
 import useCases.EmailAlreadyExistsUseCase;
@@ -18,11 +19,13 @@ public class UnikutMain {
                     switch (selected){
                         case 1:
                             boolean verifyOne;
+                            String loginSession;
                             do{
                                 System.out.println("-------------------");
 
                                 System.out.print("Digite o seu login: ");
                                 String login = read.next();
+                                loginSession = login;
 
                                 System.out.println("-------------------");
 
@@ -30,16 +33,28 @@ public class UnikutMain {
                                 String password = read.next();
                                 verifyOne = VerifyPasswordEqualsUseCase.verify(login, password, database);
                             }while(!verifyOne);
-                            boolean session = false;
+                            boolean session = true;
                             do{
                                 Menu.printMenuSignIn();
                                 int selectedOptionSignIn = read.nextInt();
-                                switch (selectedOptionSignIn){
-                                    case 1:
+                                switch (selectedOptionSignIn) {
+                                    case 1 -> {
                                         System.out.println("-----------------------");
-                                        System.out.print("Digite seu novo nome de usuário:");
+                                        System.out.print("Digite seu novo nome de usuário: ");
                                         String newName = read.next();
+                                        System.out.println("-----------------------");
 
+                                        AccountController.updateName(newName, loginSession, database);
+                                    }
+                                    case 2 -> {
+                                        System.out.println("-------------------------");
+                                        System.out.println("Digite sua nova senha: ");
+                                        String newPassword = read.next();
+                                        System.out.println("--------------------------");
+
+                                        AccountController.updatePassword(newPassword, loginSession, database);
+                                    }
+                                    case 4 -> session = false;
                                 }
 
                             }while(session);
@@ -59,6 +74,9 @@ public class UnikutMain {
                             System.out.print("Digite seu nome: ");
 
                             String name = read.next();
+                            if(name.trim().equals("")){
+                                name = "Convidado";
+                            }
 
                             System.out.println("----------------------");
 
@@ -67,7 +85,7 @@ public class UnikutMain {
 
                             System.out.println("----------------------");
                             Account user = new Account(login, name, password);
-                            database.setAccount(user);
+                            AccountController.createNewAccount(user, database);
                             break;
                     }
                 }while(true);
