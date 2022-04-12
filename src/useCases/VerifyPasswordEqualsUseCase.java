@@ -5,18 +5,27 @@ import Database.Database;
 import java.util.Objects;
 
 public class VerifyPasswordEqualsUseCase {
-    public static boolean verify (String login, String password, Database database){
-        if(database.isEmpty()){
-            System.out.println("Não existe nenhum usuário cadastrado em nosso banco de dados!");
-            return false;
-        }else{
-            for(int i = 0; i < database.getAccounts().length; i++){
-                if(Objects.equals(database.accounts[i].getLogin(), login) && Objects.equals(database.accounts[i].getLogin(), login)){
-                    System.out.println("Login ou senha incorretos");
-                    return true;
+
+    public static int verifyLogin (String login, Database database) {
+        if(database.isEmpty()) {
+            System.out.println("Usuário não cadastrado");
+            return -1;
+        } else {
+            for(int i = 0; i < database.accounts.length; i++) {
+                if(Objects.equals(database.accounts[i].getLogin(), login)){
+                    return i;
                 }
             }
+            System.out.println("Usuário não cadastrado");
+            return -1;
         }
+    }
+
+    public static boolean verify (String login, String password, Database database, int position) {
+        if (Objects.equals(database.accounts[position].getPassword(), password)) {
+            return true;
+        }
+        System.out.println("Senha incorreta");
         return false;
     }
 }

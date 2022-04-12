@@ -2,7 +2,7 @@ package Controller;
 
 import Database.Database;
 import Model.Account;
-import interfaces.IAccountController;
+import Interfaces.IAccountController;
 
 import java.util.Objects;
 
@@ -33,26 +33,26 @@ public class AccountController implements IAccountController {
             }
         }
     }
-    
+
     public static void createNewAccount(Account account, Database database) {
-            if(database.isEmpty()){
-                Account[] AccountsTemplate = new Account[1];
-                AccountsTemplate[0] = account;
-                database.setAccounts(AccountsTemplate);
-                System.out.println("----------------------");
-                System.out.println("Usuário criado com sucesso!");
-                System.out.println("----------------------");
-            }else{
-                Account[] accountsTemplate = new Account[database.accounts.length + 1];
-                for (int i = 0; i < database.accounts.length; i++){
-                    accountsTemplate[i] = database.accounts[i];
-                }
-                accountsTemplate[database.accounts.length] = account;
-                database.setAccounts(accountsTemplate);
-                System.out.println("----------------------");
-                System.out.println("Usuário criado com sucesso!");
-                System.out.println("----------------------");
+        if(database.isEmpty()) {
+            Account[] AccountsTemplate = new Account[1];
+            AccountsTemplate[0] = account;
+            database.setAccounts(AccountsTemplate);
+            System.out.println("----------------------");
+            System.out.println("Usuário criado com sucesso!");
+            System.out.println("----------------------");
+        } else {
+            Account[] accountsTemplate = new Account[database.accounts.length + 1];
+            for (int i = 0; i < database.accounts.length; i++){
+                accountsTemplate[i] = database.accounts[i];
             }
+            accountsTemplate[database.accounts.length] = account;
+            database.setAccounts(accountsTemplate);
+            System.out.println("----------------------");
+            System.out.println("Usuário criado com sucesso!");
+            System.out.println("----------------------");
+        }
     }
 
     public static void updatePassword(String password, String login, Database database) {
