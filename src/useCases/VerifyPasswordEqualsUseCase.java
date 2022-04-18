@@ -22,7 +22,6 @@ public class VerifyPasswordEqualsUseCase {
         if (Objects.equals(database.accounts[position].getPassword(), password)) {
             return true;
         }
-        System.out.println("Senha incorreta");
         return false;
     }
 }

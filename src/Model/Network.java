@@ -1,9 +1,6 @@
 package Model;
 
 import Database.Database;
-import Model.Account;
-import Model.Interactions;
-import Interfaces.IAccountController;
 import View.Menu;
 
 import java.util.Objects;

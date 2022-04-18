@@ -1,4 +1,4 @@
-package interfaces;
+package Interfaces;
 
 import Database.Database;
 import Model.Account;
