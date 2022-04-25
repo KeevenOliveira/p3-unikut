@@ -3,7 +3,7 @@ package useCases;
 import Database.Database;
 import java.util.Objects;
 
-public class EmailAlreadyExistsUseCase {
+public class LoginAlreadyExistsUseCase {
 
     public static boolean verify(String login, Database database) {
         if(database.isEmpty()) {
