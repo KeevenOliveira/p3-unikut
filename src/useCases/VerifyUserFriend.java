@@ -1,0 +1,20 @@
+package useCases;
+
+import java.util.Objects;
+import Database.Database;
+
+public class VerifyUserFriend {
+    public static boolean execute(String login, String nameFriend, Database database) throws RuntimeException {
+        if (Objects.equals(login, nameFriend)) {
+            throw new RuntimeException("Esse é o seu login!");
+        } else {
+            for (int i = 0; i < database.getAccounts().length; i++) {
+                if (Objects.equals(database.accounts[i].getLogin(), nameFriend)) {
+                    System.out.println(database.accounts[i].getName());
+                    return true;
+                }
+            }
+        }
+        throw new RuntimeException("Usuário não encontrado!");
+    }
+}

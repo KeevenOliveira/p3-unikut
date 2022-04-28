@@ -8,8 +8,7 @@ import Controller.AccountController;
 import Database.Database;
 import Model.Account;
 import Services.Network;
-import useCases.LoginAlreadyExistsUseCase;
-import useCases.VerifyPasswordEqualsUseCase;
+import useCases.*;
 
 public class UnikutMain {
     public static void main(String[] args) {
@@ -32,7 +31,7 @@ public class UnikutMain {
                                 System.out.print("Digite o seu login: ");
                                 login = read.next();
                                 loginSession = login;
-                                verifyLogin = VerifyPasswordEqualsUseCase.verifyLogin(login, database);
+                                verifyLogin = VerifyPasswordEquals.verifyLogin(login, database);
         
                                 if(verifyLogin == -1){
                                     throw new RuntimeException("Não existe usuário com este login :(");
@@ -44,7 +43,7 @@ public class UnikutMain {
                                 System.out.println("-------------------");
                                 System.out.print("Digite sua senha: ");
                                 String password = read.next();
-                                verifyPass = VerifyPasswordEqualsUseCase.verify(password, database, verifyLogin);
+                                verifyPass = VerifyPasswordEquals.verify(password, database, verifyLogin);
                                 if(!verifyPass){
                                     throw new RuntimeException("Senha incorreta!");
                                 }
@@ -81,7 +80,7 @@ public class UnikutMain {
                                                 System.out.println("---------------------");
                                                 System.out.println("Digite o login do usuário a ser encontrado: ");
                                                 nameFriend = read.next();
-                                                verify = LoginAlreadyExistsUseCase.verifyUserFriend(login, nameFriend, database);
+                                                verify = VerifyUserFriend.execute(login, nameFriend, database);
                                                 
                                                 if(verify) {
                                                     Network.verifyInvited(verifyLogin, nameFriend, database);
@@ -117,7 +116,7 @@ public class UnikutMain {
                                 System.out.println("Crie seu login: ");
                                 login = read.next();
         
-                                verifyTwo = LoginAlreadyExistsUseCase.verify(login, database);
+                                verifyTwo = LoginAlreadyExists.verify(login, database);
         
                                 if(verifyTwo){
                                     throw new RuntimeException("Já existe usuário com este login!");

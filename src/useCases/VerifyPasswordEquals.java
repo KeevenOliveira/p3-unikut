@@ -4,7 +4,7 @@ import Database.Database;
 
 import java.util.Objects;
 
-public class VerifyPasswordEqualsUseCase {
+public class VerifyPasswordEquals {
 
     public static int verifyLogin (String login, Database database) {
         if (!database.isEmpty()) {
