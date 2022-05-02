@@ -2,13 +2,11 @@ package View;
 
 import java.util.Scanner;
 
-import javax.management.RuntimeErrorException;
-
 import Controller.AccountController;
-import Database.Database;
+import Controller.Database.Database;
+import Controller.Services.Network;
+import Controller.useCases.*;
 import Model.Account;
-import Services.Network;
-import useCases.*;
 
 public class UnikutMain {
     public static void main(String[] args) {

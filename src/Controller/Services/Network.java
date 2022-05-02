@@ -1,10 +1,11 @@
-package Services;
+package Controller.Services;
 
-import Database.Database;
 import View.Menu;
 
 import java.util.Objects;
 import java.util.Scanner;
+
+import Controller.Database.Database;
 
 public class Network {
 

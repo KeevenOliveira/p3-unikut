@@ -1,8 +1,8 @@
-package useCases;
-
-import Database.Database;
+package Controller.useCases;
 
 import java.util.Objects;
+
+import Controller.Database.Database;
 
 public class VerifyPasswordEquals {
 

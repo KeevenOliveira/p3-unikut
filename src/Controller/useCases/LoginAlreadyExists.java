@@ -1,7 +1,8 @@
-package useCases;
+package Controller.useCases;
 
-import Database.Database;
 import java.util.Objects;
+
+import Controller.Database.Database;
 
 public class LoginAlreadyExists {
 

@@ -1,15 +1,14 @@
-package Model;
+package Controller.Services;
 
-import Database.Database;
 import View.Menu;
-
 import java.util.Objects;
 import java.util.Scanner;
+
+import Controller.Database.Database;
 
 public class Interactions {
 
     public static void addFriend(int positionUser, String nameFriend, Database database) {
-        Scanner sc = new Scanner(System.in);
         int indiceFriend = 0;
         if(database.accounts[positionUser].getInvitations() == null) {
             String[] listInvite = new String[1];
@@ -67,7 +66,6 @@ public class Interactions {
     }
 
     public static void acceptFriendship(int positionUser, String nameFriend, Database database) {
-
         Scanner sc = new Scanner(System.in);
         int indiceFriend = 0;
         if(database.accounts[positionUser].getFriends() == null) {
@@ -153,7 +151,6 @@ public class Interactions {
                 }
             }
         }
-
     }
 
     public static void sendMessage(int positionUser, String nameFriend, Database database){

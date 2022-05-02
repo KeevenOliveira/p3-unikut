@@ -1,4 +1,4 @@
-package Database;
+package Controller.Database;
 
 import Model.Account;
 
@@ -18,6 +18,14 @@ public class Database {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public int length(){
+        if(isEmpty()){
+            return 0;
+        }else{
+            return this.accounts.length;
         }
     }
 }

@@ -1,7 +1,8 @@
-package useCases;
+package Controller.useCases;
 
 import java.util.Objects;
-import Database.Database;
+
+import Controller.Database.Database;
 
 public class VerifyUserFriend {
     public static boolean execute(String login, String nameFriend, Database database) throws RuntimeException {
