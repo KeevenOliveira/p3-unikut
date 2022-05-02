@@ -1,2 +1,7 @@
 # p3-unikut
-Project of College in Group
+Project of Catholic University of Pernambuco in Group
+
+Heliana Morato
+Keeven Oliveira
+Carlos Gabryel
+Vitor Henrique
