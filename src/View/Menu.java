@@ -41,4 +41,9 @@ public class Menu {
         System.out.println("2 - Voltar para o menu anterior");
     }
 
+    public static void printUpdateName(){
+        System.out.println("Nome alterado com sucesso!");
+        System.out.println("-------------------------");
+    }
+
 }
