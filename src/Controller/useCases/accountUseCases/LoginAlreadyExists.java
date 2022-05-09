@@ -1,4 +1,4 @@
-package Controller.useCases;
+package Controller.useCases.accountUseCases;
 
 import java.util.Objects;
 

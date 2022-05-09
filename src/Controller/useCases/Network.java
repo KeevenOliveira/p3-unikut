@@ -11,7 +11,7 @@ public class Network {
 
     public static void verifyInvited(int positionUser, String nameFriend, Database database) {
         Scanner sc = new Scanner(System.in);
-        int cont = 0;
+        int count = 0;
         if(database.accounts[positionUser].getInvited() == null) {
             verifyInvitations(positionUser, nameFriend, database);
         } else {
@@ -19,7 +19,7 @@ public class Network {
                 if (Objects.equals(database.accounts[positionUser].getInvited()[i], nameFriend)) {
                     System.out.println(nameFriend + " convidou você para serem amigos");
                     System.out.println(" ");
-                    cont = 1;
+                    count = 1;
                     Menu.printMenuAcceptFriend();
                     int select = sc.nextInt();
                     if (select == 1) {
@@ -27,11 +27,11 @@ public class Network {
                     }
                 }
             }
-            if (cont < 1) {
+            if (count < 1) {
                 verifyInvitations(positionUser, nameFriend, database);
             }
         }
-        cont = 0;
+        count = 0;
     }
 
     public static void verifyInvitations(int positionUser, String nameFriend, Database database) {
