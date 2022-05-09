@@ -2,7 +2,23 @@ package View;
 
 public class Menu {
 
-    public Menu(){}
+    public static void printAccountCreated(){
+        System.out.println("----------------------");
+        System.out.println("Usuário criado com sucesso!");
+        System.out.println("----------------------");
+    }
+
+    public static void printUpdateAccountPassword(){
+        System.out.println("-------------------------");
+        System.out.println("Senha alterada com sucesso!");
+        System.out.println("-------------------------");
+    }
+
+    public static void printUpdateAccountName(){
+        System.out.println("-------------------------");
+        System.out.println("Nome do usuário atualizado com sucesso!");
+        System.out.println("-------------------------");
+    }
 
     public static void printMenuSignInAndSignUp() {
         System.out.println(" ");

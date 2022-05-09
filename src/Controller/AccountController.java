@@ -11,7 +11,7 @@ import Controller.useCases.accountUseCases.*;
 public class AccountController implements IAccountController {
 
     public static void updateName(String name, String login, Database database) {
-        
+        UpdateNameAccount.execute(name, login, database);
     }
 
     public static void createNewAccount(Account account, Database database) {
@@ -19,13 +19,6 @@ public class AccountController implements IAccountController {
     }
 
     public static void updatePassword(String password, String login, Database database) {
-        for(int i = 0; i < database.accounts.length; i++){
-            if(Objects.equals(database.accounts[i].getLogin(), login)){
-                database.accounts[i].setPassword(password);
-                System.out.println("Senha alterada com sucesso!");
-                System.out.println("-------------------------");
-                return;
-            }
-        }
+       UpdatePasswordAccount.execute(password, login, database);
     }
 }

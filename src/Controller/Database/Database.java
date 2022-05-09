@@ -21,7 +21,7 @@ public class Database {
         }
     }
 
-    public int length(){
+    public int size(){
         if(isEmpty()){
             return 0;
         }else{

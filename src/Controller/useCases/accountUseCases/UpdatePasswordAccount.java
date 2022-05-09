@@ -1,17 +1,16 @@
 package Controller.useCases.accountUseCases;
 
 import java.util.Objects;
+import Controller.Database.Database;
 import View.Menu;
 
-import Controller.Database.Database;
-
-public class UpdateNameAccount {
-    public static void execute(String name, String login, Database database){
+public class UpdatePasswordAccount {
+    public static void execute(String password, String login, Database database){
         if(!database.isEmpty()){
             for(int i = 0; i < database.size(); i++) {
                 if(Objects.equals(database.accounts[i].getLogin(), login)){
-                    database.accounts[i].setName(name);
-                    Menu.printUpdateAccountName();
+                    database.accounts[i].setPassword(password);
+                    Menu.printUpdateAccountPassword();
                     return;
                 }
             }

@@ -1,4 +1,4 @@
-package Controller.Services;
+package Controller.useCases;
 
 import View.Menu;
 
