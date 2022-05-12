@@ -8,6 +8,7 @@ import Controller.useCases.*;
 import Controller.useCases.accountUseCases.GetUserByLogin;
 import Controller.useCases.accountUseCases.LoginAlreadyExists;
 import Controller.useCases.accountUseCases.LoginAndPasswordAlreadyExists;
+import Controller.useCases.networkUseCases.Network;
 import Model.Account;
 
 public class UnikutMain {
@@ -29,20 +30,19 @@ public class UnikutMain {
                         try{
                                 System.out.println("-------------------");
                                 System.out.print("Digite o seu login: ");
-                                login = read.next();
-                                loginSession = login;
+                                loginSession = read.next();
         
                             do {
                                 System.out.println("-------------------");
                                 System.out.print("Digite sua senha: ");
                                 String password = read.next();
-                                verifyPass = LoginAndPasswordAlreadyExists.verify(login, password, database);
+                                verifyPass = LoginAndPasswordAlreadyExists.verify(loginSession, password, database);
                                 if(!verifyPass){
                                     throw new RuntimeException("Login ou senha incorretos!");
                                 }
     
                             } while (!verifyPass);
-                            user = GetUserByLogin.execute(login, database);
+                            user = GetUserByLogin.execute(loginSession, database);
         
                             System.out.println(" ");
                             System.out.println("Bem vindo(a), "+ user.getName()+"!");
