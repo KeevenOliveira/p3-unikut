@@ -4,19 +4,21 @@ import java.util.Scanner;
 
 import Controller.Database.Database;
 import Controller.useCases.interactionsUseCases.AcceptFriendShip;
+import Model.Account;
 import View.Menu;
 
 public class VerifyPendingInvitations {
     public static void execute(int positionUser, Database database) {
         Scanner sc = new Scanner(System.in);
+        Account[] accounts = database.getAccounts();
         Menu.printPendingInv();
         int cont = 0;
-        if (database.accounts[positionUser].getInvitations() == null) {
+        if (accounts[positionUser].getInvitations() == null) {
             Menu.printNeverUser();
         } else {
-            for (int i = 0; i < database.accounts[positionUser].getInvitations().length; i++) {
-                if (database.accounts[positionUser].getInvitations()[i] != null) {
-                    System.out.println(database.accounts[positionUser].getInvitations()[i]);
+            for (int i = 0; i < accounts[positionUser].getInvitations().length; i++) {
+                if (accounts[positionUser].getInvitations()[i] != null) {
+                    System.out.println(accounts[positionUser].getInvitations()[i]);
                     cont++;
                 }
             }
@@ -28,12 +30,12 @@ public class VerifyPendingInvitations {
         }
         Menu.printPendingRequests();
         cont = 0;
-        if (database.accounts[positionUser].getInvited() == null) {
+        if (accounts[positionUser].getInvited() == null) {
             Menu.printNeverUser();
         } else {
-            for (int i = 0; i < database.accounts[positionUser].getInvited().length; i++) {
-                if (database.accounts[positionUser].getInvited()[i] != null) {
-                    System.out.println(database.accounts[positionUser].getInvited()[i]);
+            for (int i = 0; i < accounts[positionUser].getInvited().length; i++) {
+                if (accounts[positionUser].getInvited()[i] != null) {
+                    System.out.println(accounts[positionUser].getInvited()[i]);
                     cont++;
                 }
             }

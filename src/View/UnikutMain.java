@@ -5,9 +5,7 @@ import java.util.Scanner;
 import Controller.AccountController;
 import Controller.Database.Database;
 import Controller.useCases.*;
-import Controller.useCases.accountUseCases.GetUserByLogin;
-import Controller.useCases.accountUseCases.LoginAlreadyExists;
-import Controller.useCases.accountUseCases.LoginAndPasswordAlreadyExists;
+import Controller.useCases.accountUseCases.*;
 import Controller.useCases.networkUseCases.*;
 import Model.Account;
 
@@ -23,26 +21,28 @@ public class UnikutMain {
 
                 if (selected == 1) {
                     boolean verifyPass;
-                    boolean verifyLogin;
+                    int position = 0;
                     String loginSession;
-                    String login;
                     Account user;
                     try {
-                        System.out.println("-------------------");
-                        System.out.print("Digite o seu login: ");
-                        loginSession = read.next();
 
                         do {
+                            System.out.println("-------------------");
+                            System.out.print("Digite o seu login: ");
+                            loginSession = read.next();
                             System.out.println("-------------------");
                             System.out.print("Digite sua senha: ");
                             String password = read.next();
                             verifyPass = LoginAndPasswordAlreadyExists.verify(loginSession, password, database);
+                            System.out.println(verifyPass + " - verifyPass");
                             if (!verifyPass) {
                                 throw new RuntimeException("Login ou senha incorretos!");
                             }
 
                         } while (!verifyPass);
                         user = GetUserByLogin.execute(loginSession, database);
+
+                        position = GetAccountPosition.execute(loginSession, database);
 
                         System.out.println(" ");
                         System.out.println("Bem vindo(a), " + user.getName() + "!");
@@ -59,6 +59,7 @@ public class UnikutMain {
                                     String newName = read.next();
                                     System.out.println("-----------------------");
                                     AccountController.updateName(newName, loginSession, database);
+                                    break;
                                 }
                                 case 2: {
                                     System.out.println("-------------------------");
@@ -66,6 +67,7 @@ public class UnikutMain {
                                     String newPassword = read.next();
                                     System.out.println("--------------------------");
                                     AccountController.updatePassword(newPassword, loginSession, database);
+                                    break;
                                 }
                                 case 3: {
                                     boolean verify;
@@ -74,29 +76,31 @@ public class UnikutMain {
                                             System.out.println("---------------------");
                                             System.out.println("Digite o login do usuário a ser encontrado: ");
                                             nameFriend = read.next();
-                                            verify = VerifyUserFriend.execute(login, nameFriend, database);
+                                            verify = VerifyUserFriend.execute(loginSession, nameFriend, database);
 
                                             if (verify) {
-                                                VerifyInvited.execute(verifyLogin, nameFriend, database);
+                                                VerifyInvited.execute(position, nameFriend, database);
                                             }
 
                                             System.out.println(" ");
                                         } while (!verify);
+                                        break;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
                                 case 4:
-                                    ListingFriends.execute(verifyLogin, database);
-
+                                    ListingFriends.execute(position, database);
+                                    break;
                                 case 5:
-                                    VerifyPendingInvitations.execute(verifyLogin, database);
-
+                                    VerifyPendingInvitations.execute(position, database);
+                                    break;
                                 case 6:
-                                    ListingMessages.execute(verifyLogin, database);
-
+                                    ListingMessages.execute(position, database);
+                                    break;
                                 case 7:
                                     session = false;
+                                    break;
                             }
                         } while (session);
                     } catch (Exception e) {

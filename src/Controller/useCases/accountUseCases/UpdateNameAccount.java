@@ -4,18 +4,20 @@ import java.util.Objects;
 import View.Menu;
 
 import Controller.Database.Database;
+import Model.Account;
 
 public class UpdateNameAccount {
-    public static void execute(String name, String login, Database database){
-        if(!database.isEmpty()){
-            for(int i = 0; i < database.size(); i++) {
-                if(Objects.equals(database.accounts[i].getLogin(), login)){
-                    database.accounts[i].setName(name);
+    public static void execute(String name, String login, Database database) {
+        Account[] accounts = database.getAccounts();
+        if (!database.isEmpty()) {
+            for (int i = 0; i < database.size(); i++) {
+                if (Objects.equals(accounts[i].getLogin(), login)) {
+                    accounts[i].setName(name);
                     Menu.printUpdateAccountName();
                     return;
                 }
             }
-        }else{
+        } else {
             throw new RuntimeException("Não existe usuário cadastrado para atualizar");
         }
     }

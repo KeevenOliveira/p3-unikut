@@ -2,19 +2,24 @@ package View;
 
 public class Menu {
 
-    public static void printAccountCreated(){
+    public static void printAccountCreated() {
         System.out.println("----------------------");
         System.out.println("Usuário criado com sucesso!");
         System.out.println("----------------------");
     }
 
-    public static void printUpdateAccountPassword(){
+    public static void printUpdateAccountPassword() {
         System.out.println("-------------------------");
         System.out.println("Senha alterada com sucesso!");
         System.out.println("-------------------------");
     }
 
-    public static void printUpdateAccountName(){
+    public static void printEnterYourPassword() {
+        System.out.println("-------------------");
+        System.out.print("Digite o seu login: ");
+    }
+
+    public static void printUpdateAccountName() {
         System.out.println("-------------------------");
         System.out.println("Nome do usuário atualizado com sucesso!");
         System.out.println("-------------------------");
@@ -56,50 +61,50 @@ public class Menu {
         System.out.println("2 - Voltar para o menu anterior");
     }
 
-    public static void printUpdateName(){
+    public static void printUpdateName() {
         System.out.println("Nome alterado com sucesso!");
         System.out.println("-------------------------");
     }
 
-    public static void printPendigFriendship(){
+    public static void printPendigFriendship() {
         System.out.println("Status de amizade: PENDENTE");
         System.out.println("Aguarde resposta");
     }
 
-    public static void printNotFriends(){
+    public static void printNotFriends() {
         System.out.println("Vocês não são amigos\n");
     }
 
-    public static void printFriends(){
+    public static void printFriends() {
         System.out.println("Status de amizade: AMIGOS\n");
     }
 
-    public static void printPendingInv(){
+    public static void printPendingInv() {
         System.out.println("\nUsuários que você solicitou amizade:");
     }
 
-    public static void printWaitInv(){
+    public static void printWaitInv() {
         System.out.println("Aguarde ele(a)(s) responder(em) sua solicitação para interagir!");
     }
 
-    public static void printNeverUser(){
+    public static void printNeverUser() {
         System.out.println("- Nenhum usuário -");
     }
 
-    public static void printPendingRequests(){
+    public static void printPendingRequests() {
         System.out.println("---------------");
         System.out.println("Usuários que solicitaram sua amizade:");
     }
 
-    public static void printYourFriends(){
+    public static void printYourFriends() {
         System.out.println("\n--- Seus amigos ---");
     }
 
-    public static void printNotYourFriends(){
+    public static void printNotYourFriends() {
         System.out.println("Você ainda não tem amigos adicionados");
     }
 
-    public static void printNotPosts(){
+    public static void printNotPosts() {
         System.out.println("\nVocê não tem nenhuma mensagem");
     }
 

@@ -6,17 +6,19 @@ import java.util.Scanner;
 import Controller.Database.Database;
 
 import Controller.useCases.interactionsUseCases.AcceptFriendShip;
+import Model.Account;
 import View.Menu;
 
 public class VerifyInvited {
     public static void execute(int positionUser, String nameFriend, Database database) {
         Scanner sc = new Scanner(System.in);
         int count = 0;
-        if (database.accounts[positionUser].getInvited() == null) {
+        Account[] accounts = database.getAccounts();
+        if (accounts[positionUser].getInvited() == null) {
             VerifyInvitations.execute(positionUser, nameFriend, database);
         } else {
-            for (int i = 0; i < database.accounts[positionUser].getInvited().length; i++) {
-                if (Objects.equals(database.accounts[positionUser].getInvited()[i], nameFriend)) {
+            for (int i = 0; i < accounts[positionUser].getInvited().length; i++) {
+                if (Objects.equals(accounts[positionUser].getInvited()[i], nameFriend)) {
                     System.out.println(nameFriend + " convidou você para serem amigos");
                     System.out.println(" ");
                     count = 1;

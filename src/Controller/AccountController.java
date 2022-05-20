@@ -3,8 +3,6 @@ package Controller;
 import Model.Account;
 import Interfaces.IAccountController;
 
-import java.util.Objects;
-
 import Controller.Database.Database;
 import Controller.useCases.accountUseCases.*;
 
@@ -19,6 +17,6 @@ public class AccountController implements IAccountController {
     }
 
     public static void updatePassword(String password, String login, Database database) {
-       UpdatePasswordAccount.execute(password, login, database);
+        UpdatePasswordAccount.execute(password, login, database);
     }
 }

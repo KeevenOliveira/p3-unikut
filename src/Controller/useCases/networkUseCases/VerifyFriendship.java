@@ -6,13 +6,15 @@ import java.util.Scanner;
 import Controller.Database.Database;
 import Controller.useCases.interactionsUseCases.AddFriend;
 import Controller.useCases.interactionsUseCases.SendMessage;
+import Model.Account;
 import View.Menu;
 
 public class VerifyFriendship {
     public static void execute(int positionUser, String nameFriend, Database database) {
         Scanner sc = new Scanner(System.in);
+        Account[] accounts = database.getAccounts();
         int cont = 0;
-        if (database.accounts[positionUser].getFriends() == null) {
+        if (accounts[positionUser].getFriends() == null) {
             Menu.printNotFriends();
             Menu.printMenuNoFriend();
             int select = sc.nextInt();
@@ -20,8 +22,8 @@ public class VerifyFriendship {
                 AddFriend.execute(positionUser, nameFriend, database);
             }
         } else {
-            for (int k = 0; k < database.accounts[positionUser].getFriends().length; k++) {
-                if (Objects.equals(database.accounts[positionUser].getFriends()[k], nameFriend)) {
+            for (int k = 0; k < accounts[positionUser].getFriends().length; k++) {
+                if (Objects.equals(accounts[positionUser].getFriends()[k], nameFriend)) {
                     Menu.printFriends();
                     Menu.printMenuFriend();
                     int selected = sc.nextInt();
