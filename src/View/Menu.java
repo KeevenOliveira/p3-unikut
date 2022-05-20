@@ -19,6 +19,12 @@ public class Menu {
         System.out.print("Digite o seu login: ");
     }
 
+    public static void printFriendAccepted(String nameFriend) {
+        System.out.println(" ");
+        System.out.println(nameFriend + " foi aceito como amigo.");
+        System.out.println("Agora vocês podem interagir! O que deseja fazer agora?");
+    }
+
     public static void printUpdateAccountName() {
         System.out.println("-------------------------");
         System.out.println("Nome do usuário atualizado com sucesso!");

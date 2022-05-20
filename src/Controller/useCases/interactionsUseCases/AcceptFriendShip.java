@@ -7,6 +7,8 @@ import Controller.Database.Database;
 import Model.Account;
 import View.Menu;
 
+import Controller.useCases.accountUseCases.*;
+
 public class AcceptFriendShip {
 
     public static void execute(int positionUser, String nameFriend, Database database) {
@@ -16,39 +18,36 @@ public class AcceptFriendShip {
         if (accounts[positionUser].getFriends() == null) {
             String[] listFriends = new String[1];
             listFriends[0] = nameFriend;
-            for (int i = 0; i < accounts.length; i++) {
-                if (Objects.equals(accounts[i].getLogin(), nameFriend)) {
-                    indiceFriend = i;
-                }
-            }
+            indiceFriend = GetAccountPosition.execute(nameFriend, database);
             accounts[positionUser].setFriends(listFriends);
-            System.out.println(" ");
-            System.out.println(nameFriend + " foi aceito como amigo.");
-            System.out.println("Agora vocês podem interagir! O que deseja fazer agora?");
+            Menu.printFriendAccepted(nameFriend);
             Menu.printMenuFriend();
+            String[] friends = accounts[indiceFriend].getFriends();
             int selected = sc.nextInt();
             if (selected == 1) {
                 SendMessage.execute(positionUser, nameFriend, database);
             }
-            if (accounts[indiceFriend].getFriends() == null) {
+            if (friends == null) {
                 String[] listFriendship = new String[1];
                 listFriendship[0] = accounts[positionUser].getLogin();
                 accounts[indiceFriend].setFriends(listFriendship);
             } else {
-                String[] listFriendship = new String[accounts[indiceFriend].getFriends().length + 1];
-                for (int i = 0; i < accounts[indiceFriend].getFriends().length; i++) {
-                    listFriendship[i] = accounts[indiceFriend].getFriends()[i];
+                String[] listFriendship = new String[friends.length + 1];
+                for (int i = 0; i < friends.length; i++) {
+                    listFriendship[i] = friends[i];
                 }
-                listFriendship[accounts[indiceFriend].getFriends().length] = accounts[positionUser]
+                listFriendship[friends.length] = accounts[positionUser]
                         .getLogin();
                 accounts[indiceFriend].setFriends(listFriendship);
             }
-            for (int j = 0; j < accounts[positionUser].getInvited().length; j++) {
-                if (Objects.equals(accounts[positionUser].getInvited()[j],
+            String[] invited = accounts[positionUser].getInvited();
+            for (int j = 0; j < invited.length; j++) {
+                if (Objects.equals(invited[j],
                         accounts[indiceFriend].getLogin())) {
-                    accounts[positionUser].getInvited()[j] = null;
+                    invited[j] = null;
                 }
             }
+            String[] invitations = accounts[positionUser].getInvited();
             for (int k = 0; k < accounts[indiceFriend].getInvitations().length; k++) {
                 if (Objects.equals(accounts[indiceFriend].getInvitations()[k],
                         accounts[positionUser].getLogin())) {

@@ -4,39 +4,41 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import Controller.Database.Database;
+import Model.Account;
 
 public class SendMessage {
 
     public static void execute(int positionUser, String nameFriend, Database database) {
         Scanner sc = new Scanner(System.in);
         int indiceFriend = 0;
+        Account[] accounts = database.getAccounts();
         System.out.println("-- Escreva a mensagem que deseja enviar a " + nameFriend);
         String message = sc.nextLine();
-        for (int j = 0; j < database.accounts.length; j++) {
-            if (Objects.equals(database.accounts[j].getLogin(), nameFriend)) {
+        for (int j = 0; j < accounts.length; j++) {
+            if (Objects.equals(accounts[j].getLogin(), nameFriend)) {
                 indiceFriend = j;
             }
         }
-        if (database.accounts[indiceFriend].getMessageList() == null) {
+        if (accounts[indiceFriend].getMessageList() == null) {
             String[] listMessages = new String[1];
             String[] listWriters = new String[1];
             listMessages[0] = message;
-            listWriters[0] = database.accounts[positionUser].getName();
-            database.accounts[indiceFriend].setMessageList(listMessages);
-            database.accounts[indiceFriend].setMessageWriters(listWriters);
+            listWriters[0] = accounts[positionUser].getName();
+            accounts[indiceFriend].setMessageList(listMessages);
+            accounts[indiceFriend].setMessageWriters(listWriters);
             System.out.println("- Mensagem enviada a " + nameFriend + " -");
         } else {
-            String[] listMessages = new String[database.accounts[indiceFriend].getMessageList().length + 1];
-            String[] listWriters = new String[database.accounts[indiceFriend].getMessageWriters().length + 1];
-            for (int i = 0; i < database.accounts[indiceFriend].getMessageList().length; i++) {
-                listMessages[i] = database.accounts[indiceFriend].getMessageList()[i];
-                listWriters[i] = database.accounts[indiceFriend].getMessageWriters()[i];
+            String[] listMessages = new String[accounts[indiceFriend].getMessageList().length + 1];
+            String[] listWriters = new String[accounts[indiceFriend].getMessageWriters().length + 1];
+            for (int i = 0; i < accounts[indiceFriend].getMessageList().length; i++) {
+                listMessages[i] = accounts[indiceFriend].getMessageList()[i];
+                listWriters[i] = accounts[indiceFriend].getMessageWriters()[i];
             }
-            listMessages[database.accounts[indiceFriend].getMessageList().length] = message;
-            listWriters[database.accounts[indiceFriend].getMessageWriters().length] = database.accounts[positionUser]
+            listMessages[accounts[indiceFriend].getMessageList().length] = message;
+            listWriters[accounts[indiceFriend].getMessageWriters().length] = accounts[positionUser]
                     .getName();
-            database.accounts[indiceFriend].setMessageList(listMessages);
-            database.accounts[indiceFriend].setMessageWriters(listWriters);
+            accounts[indiceFriend].setMessageList(listMessages);
+            accounts[indiceFriend].setMessageWriters(listWriters);
             System.out.println("- Mensagem enviada a " + nameFriend + " -");
         }
     }
