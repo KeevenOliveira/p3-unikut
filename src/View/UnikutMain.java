@@ -11,7 +11,8 @@ import Model.Account;
 
 public class UnikutMain {
     public static void main(String[] args) {
-        Database database = new Database();
+        // Design Pattern: Singleton Here
+        Database database = Database.getInstance(null);
         try (Scanner read = new Scanner(System.in)) {
             System.out.println("**** Bem vindo(a) ao Unikut! ****");
             do {
