@@ -40,7 +40,12 @@ public class UnikutMain {
                         } while (!verifyPass);
                         user = GetUserByLogin.execute(loginSession, database);
 
-                        position = GetAccountPosition.execute(loginSession, database);
+                        try {
+                            Thread.sleep(500);
+                            position = GetAccountPosition.execute(loginSession, database);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
                         Menu.printWelcomeSignIn(user.getName());
 
