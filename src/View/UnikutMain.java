@@ -2,7 +2,7 @@ package View;
 
 import java.util.Scanner;
 
-import Controller.AccountController;
+import Controller.*;
 import Controller.Database.Database;
 import Controller.useCases.*;
 import Controller.useCases.accountUseCases.*;
@@ -14,7 +14,7 @@ public class UnikutMain {
         // Design Pattern: Singleton Here
         Database database = Database.getInstance(null);
         try (Scanner read = new Scanner(System.in)) {
-            System.out.println("**** Bem vindo(a) ao Unikut! ****");
+            Menu.printWelcome();
             do {
                 Menu.printMenuSignInAndSignUp();
 
@@ -28,14 +28,11 @@ public class UnikutMain {
                     try {
 
                         do {
-                            System.out.println("-------------------");
-                            System.out.print("Digite o seu login: ");
+                            Menu.printEnterYourLogin();
                             loginSession = read.next();
-                            System.out.println("-------------------");
-                            System.out.print("Digite sua senha: ");
+                            Menu.printEnterYourPassword();
                             String password = read.next();
                             verifyPass = LoginAndPasswordAlreadyExists.verify(loginSession, password, database);
-                            System.out.println(verifyPass + " - verifyPass");
                             if (!verifyPass) {
                                 throw new RuntimeException("Login ou senha incorretos!");
                             }
@@ -45,8 +42,7 @@ public class UnikutMain {
 
                         position = GetAccountPosition.execute(loginSession, database);
 
-                        System.out.println(" ");
-                        System.out.println("Bem vindo(a), " + user.getName() + "!");
+                        Menu.printWelcomeSignIn(user.getName());
 
                         boolean session = true;
                         do {

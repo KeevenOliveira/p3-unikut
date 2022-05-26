@@ -6,18 +6,18 @@ public final class Database {
     private static Database instance;
     public Account[] accounts;
 
-    private Database(Account[] value) {
+    private Database(Account[] accounts) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        this.accounts = value;
+        this.accounts = accounts;
     }
 
-    public static Database getInstance(Account[] value) {
+    public static Database getInstance(Account[] accounts) {
         if (instance == null) {
-            instance = new Database(value);
+            instance = new Database(accounts);
         }
         return instance;
     }

@@ -2,6 +2,10 @@ package View;
 
 public class Menu {
 
+    public static void printWelcome() {
+        System.out.println("**** Bem vindo(a) ao Unikut! ****");
+    }
+
     public static void printAccountCreated() {
         System.out.println("----------------------");
         System.out.println("Usuário criado com sucesso!");
@@ -14,9 +18,19 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
-    public static void printEnterYourPassword() {
+    public static void printWelcomeSignIn(String name) {
+        System.out.println(" ");
+        System.out.println("Bem vindo(a), " + name + "!");
+    }
+
+    public static void printEnterYourLogin() {
         System.out.println("-------------------");
         System.out.print("Digite o seu login: ");
+    }
+
+    public static void printEnterYourPassword() {
+        System.out.println("-------------------");
+        System.out.print("Digite sua senha: ");
     }
 
     public static void printFriendAccepted(String nameFriend) {
