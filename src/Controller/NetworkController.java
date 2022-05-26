@@ -1,9 +1,10 @@
 package Controller;
 
 import Controller.useCases.networkUseCases.*;
+import Interfaces.INetworkController;
 import Controller.Database.*;
 
-public class NetworkController {
+public class NetworkController implements INetworkController {
     public static void listingFriends(int positionUser, Database database) {
         ListingFriends.execute(positionUser, database);
     }

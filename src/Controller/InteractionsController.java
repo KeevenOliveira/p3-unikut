@@ -2,8 +2,9 @@ package Controller;
 
 import Controller.useCases.interactionsUseCases.*;
 import Controller.Database.*;
+import Interfaces.IInteractionsController;
 
-public class InteractionsController {
+public class InteractionsController implements IInteractionsController {
     public static void acceptFriendShip(int positionUser, String nameFriend, Database database) {
         AcceptFriendShip.execute(positionUser, nameFriend, database);
     }
