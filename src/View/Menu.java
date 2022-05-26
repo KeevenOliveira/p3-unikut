@@ -28,6 +28,35 @@ public class Menu {
         System.out.print("Digite o seu login: ");
     }
 
+    public static void printEnterNewPassword() {
+        System.out.println("-------------------");
+        System.out.print("Digite a nova senha: ");
+    }
+
+    public static void printLine() {
+        System.out.println("---------------------");
+    }
+
+    public static void printSearchUserByLogin() {
+        System.out.println("---------------------");
+        System.out.println("Digite o login do usuário a ser encontrado: ");
+    }
+
+    public static void printEnterYourName() {
+        System.out.println("-------------------");
+        System.out.print("Digite seu nome: ");
+    }
+
+    public static void printCreateYourLogin() {
+        System.out.println("-------------------");
+        System.out.print("Crie seu login: ");
+    }
+
+    public static void printCreateYourPassword() {
+        System.out.println("-------------------");
+        System.out.print("Crie sua senha: ");
+    }
+
     public static void printEnterYourPassword() {
         System.out.println("-------------------");
         System.out.print("Digite sua senha: ");
@@ -126,6 +155,13 @@ public class Menu {
 
     public static void printNotPosts() {
         System.out.println("\nVocê não tem nenhuma mensagem");
+    }
+
+    public static void printExit() {
+        System.out.println(" ");
+        System.out.println("Até a próxima!");
+        System.out.println("\nObrigado por utilizar o Unikut!");
+        System.out.println("*** Sessão encerrada! ***");
     }
 
 }

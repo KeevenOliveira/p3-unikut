@@ -51,18 +51,16 @@ public class UnikutMain {
                             String nameFriend;
                             switch (selectedOptionSignIn) {
                                 case 1: {
-                                    System.out.println("-----------------------");
-                                    System.out.print("Digite seu novo nome: ");
+                                    Menu.printEnterYourName();
                                     String newName = read.next();
-                                    System.out.println("-----------------------");
+                                    Menu.printLine();
                                     AccountController.updateName(newName, loginSession, database);
                                     break;
                                 }
                                 case 2: {
-                                    System.out.println("-------------------------");
-                                    System.out.println("Digite sua nova senha: ");
+                                    Menu.printEnterNewPassword();
                                     String newPassword = read.next();
-                                    System.out.println("--------------------------");
+                                    Menu.printLine();
                                     AccountController.updatePassword(newPassword, loginSession, database);
                                     break;
                                 }
@@ -70,8 +68,7 @@ public class UnikutMain {
                                     boolean verify;
                                     try {
                                         do {
-                                            System.out.println("---------------------");
-                                            System.out.println("Digite o login do usuário a ser encontrado: ");
+                                            Menu.printSearchUserByLogin();
                                             nameFriend = read.next();
                                             verify = VerifyUserFriend.execute(loginSession, nameFriend, database);
 
@@ -79,7 +76,7 @@ public class UnikutMain {
                                                 VerifyInvited.execute(position, nameFriend, database);
                                             }
 
-                                            System.out.println(" ");
+                                            Menu.printLine();
                                         } while (!verify);
                                         break;
                                     } catch (Exception e) {
@@ -108,8 +105,7 @@ public class UnikutMain {
                         boolean verifyTwo;
                         String login;
                         do {
-                            System.out.println("-----------------------");
-                            System.out.println("Crie seu login: ");
+                            Menu.printCreateYourLogin();
                             login = read.next();
 
                             verifyTwo = LoginAlreadyExists.verify(login, database);
@@ -119,16 +115,14 @@ public class UnikutMain {
                             }
 
                         } while (verifyTwo);
-                        System.out.println("------------------------");
-                        System.out.print("Digite seu nome: ");
+                        Menu.printEnterYourName();
                         String name = read.next();
 
                         if (name.trim().equals("")) {
                             name = "Convidado";
                         }
 
-                        System.out.println("----------------------");
-                        System.out.print("Crie uma senha: ");
+                        Menu.printCreateYourPassword();
                         String password = read.next();
 
                         Account user = new Account(login, name, password);
@@ -137,9 +131,7 @@ public class UnikutMain {
                         e.printStackTrace();
                     }
                 } else if (selected == 3) {
-                    System.out.println(" ");
-                    System.out.println("Até a próxima!");
-                    System.out.println("*** Sessão encerrada! ***");
+                    Menu.printExit();
                     break;
                 } else {
                     try {
