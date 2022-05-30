@@ -19,4 +19,8 @@ public class AccountController implements IAccountController {
     public static void updatePassword(String password, String login, Database database) {
         UpdatePasswordAccount.execute(password, login, database);
     }
+
+    public static Account[] getAllAccounts(Database database){
+        return GetAllAccounts.execute(database);
+    }
 }

@@ -53,16 +53,16 @@ public class UnikutMain {
 
                         Menu.printWelcomeSignIn(user.getName());
 
+                        if(loginSession.equals("admin") && password.equals("admin")){
+                            Menu.printAdmin(database.size(), AccountController.getAllAccounts(database));
+
+                        } else {
                         boolean session = true;
                         do {
                             Menu.printMenuSignIn();
                             int selectedOptionSignIn = read.nextInt();
                             String nameFriend;
-
-                            if(loginSession == "admin" && password == "admin"){
-                                Menu.printAdmin(sizeDatabase);
-
-                            } else{
+                            
                                 switch (selectedOptionSignIn) {
                                     case 1: {
                                         Menu.printEnterYourName();
@@ -111,8 +111,8 @@ public class UnikutMain {
                                         break;
 
                                 }
-                            }
-                        } while (session);
+                            }while (session);
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

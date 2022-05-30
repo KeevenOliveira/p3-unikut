@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Database.Database;
+import Model.Account;
 
 public class Menu {
 
@@ -166,9 +167,12 @@ public class Menu {
         System.out.println("*** Sessão encerrada! ***");
     }
 
-    public static void printAdmin(int sizeDatabase) {
+    public static void printAdmin(int sizeDatabase, Account[] accounts) {
         System.out.println("Quantidade de contas cadastradas: " + sizeDatabase);
-        
+        System.out.println("\n--- Lista de contas ---");
+        for(int i = 0; i < sizeDatabase; i++) {
+            System.out.println("Nome: "+ accounts[i].getName() + "\nLogin: "+ accounts[i].getLogin() + "\nSenha: " + accounts[i].getPassword());
+            System.out.println("-------------------");
+        }
     }
-
 }
