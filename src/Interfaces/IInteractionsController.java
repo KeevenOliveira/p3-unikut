@@ -11,4 +11,8 @@ public interface IInteractionsController {
 
     public static void sendMessage(int positionUser, String nameFriend, Database database) {
     }
+
+    public static boolean verifyUserFriend(String login, String nameFriend, Database database) {
+        return false;
+    }
 }

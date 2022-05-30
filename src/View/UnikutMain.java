@@ -5,17 +5,12 @@ import java.util.Scanner;
 import Controller.*;
 import Controller.Database.Database;
 import Controller.useCases.*;
-import Controller.useCases.accountUseCases.*;
-import Controller.useCases.networkUseCases.*;
 import Model.Account;
 
 public class UnikutMain {
     public static void main(String[] args) {
         // Design Pattern: Singleton Here
-        Account adminAccount = new Account("admin", "admin", "admin");
-        Account[] accounts = {adminAccount};
-        Database database = Database.getInstance(accounts);
-        
+        Database database = Database.getInstance(null);
         try (Scanner read = new Scanner(System.in)) {
             Menu.printWelcome();
             do {
@@ -27,7 +22,6 @@ public class UnikutMain {
                     boolean verifyPass;
                     int position = 0;
                     String loginSession;
-                    String password;
                     Account user;
                     try {
 
@@ -35,34 +29,29 @@ public class UnikutMain {
                             Menu.printEnterYourLogin();
                             loginSession = read.next();
                             Menu.printEnterYourPassword();
-                            password = read.next();
-                            verifyPass = LoginAndPasswordAlreadyExists.verify(loginSession, password, database);
+                            String password = read.next();
+                            verifyPass = AccountController.loginAndPasswordAlreadyExists(loginSession, password,
+                                    database);
                             if (!verifyPass) {
                                 throw new RuntimeException("Login ou senha incorretos!");
                             }
 
                         } while (!verifyPass);
-                        user = GetUserByLogin.execute(loginSession, database);
+                        user = AccountController.getUserByLogin(loginSession, database);
 
-                        try {
-                            Thread.sleep(500);
-                            position = GetAccountPosition.execute(loginSession, database);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        position = AccountController.getPositionByLogin(loginSession, database);
 
                         Menu.printWelcomeSignIn(user.getName());
 
-                        if(loginSession.equals("admin") && password.equals("admin")){
+                        if (loginSession.equals("admin")) {
                             Menu.printAdmin(database.size(), AccountController.getAllAccounts(database));
 
                         } else {
-                        boolean session = true;
-                        do {
-                            Menu.printMenuSignIn();
-                            int selectedOptionSignIn = read.nextInt();
-                            String nameFriend;
-                            
+                            boolean session = true;
+                            do {
+                                Menu.printMenuSignIn();
+                                int selectedOptionSignIn = read.nextInt();
+                                String nameFriend;
                                 switch (selectedOptionSignIn) {
                                     case 1: {
                                         Menu.printEnterYourName();
@@ -84,10 +73,12 @@ public class UnikutMain {
                                             do {
                                                 Menu.printSearchUserByLogin();
                                                 nameFriend = read.next();
-                                                verify = VerifyUserFriend.execute(loginSession, nameFriend, database);
+                                                verify = InteractionsController.verifyUserFriend(loginSession,
+                                                        nameFriend,
+                                                        database);
 
                                                 if (verify) {
-                                                    VerifyInvited.execute(position, nameFriend, database);
+                                                    NetworkController.verifyInvited(position, nameFriend, database);
                                                 }
 
                                                 Menu.printLine();
@@ -98,20 +89,19 @@ public class UnikutMain {
                                         }
                                     }
                                     case 4:
-                                        ListingFriends.execute(position, database);
+                                        NetworkController.listingFriends(position, database);
                                         break;
                                     case 5:
-                                        VerifyPendingInvitations.execute(position, database);
+                                        NetworkController.verifyPendingInvitations(position, database);
                                         break;
                                     case 6:
-                                        ListingMessages.execute(position, database);
+                                        NetworkController.listingMessages(position, database);
                                         break;
                                     case 7:
                                         session = false;
                                         break;
-
                                 }
-                            }while (session);
+                            } while (session);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -124,7 +114,7 @@ public class UnikutMain {
                             Menu.printCreateYourLogin();
                             login = read.next();
 
-                            verifyTwo = LoginAlreadyExists.verify(login, database);
+                            verifyTwo = AccountController.loginAlreadyExists(login, database);
 
                             if (verifyTwo) {
                                 throw new RuntimeException("Já existe usuário com este login!");

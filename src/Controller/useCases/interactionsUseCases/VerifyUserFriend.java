@@ -1,4 +1,4 @@
-package Controller.useCases;
+package Controller.useCases.interactionsUseCases;
 
 import java.util.Objects;
 
