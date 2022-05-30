@@ -16,4 +16,8 @@ public class InteractionsController implements IInteractionsController {
     public static void sendMessage(int positionUser, String nameFriend, Database database) {
         SendMessage.execute(positionUser, nameFriend, database);
     }
+
+    public static boolean verifyUserFriend(String login, String nameFriend, Database database) {
+        return VerifyUserFriend.execute(login, nameFriend, database);
+    }
 }
