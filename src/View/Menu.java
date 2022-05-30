@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Database.Database;
+
 public class Menu {
 
     public static void printWelcome() {
@@ -162,6 +164,11 @@ public class Menu {
         System.out.println("Até a próxima!");
         System.out.println("\nObrigado por utilizar o Unikut!");
         System.out.println("*** Sessão encerrada! ***");
+    }
+
+    public static void printAdmin(int sizeDatabase) {
+        System.out.println("Quantidade de contas cadastradas: " + sizeDatabase);
+        
     }
 
 }

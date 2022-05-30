@@ -12,7 +12,10 @@ import Model.Account;
 public class UnikutMain {
     public static void main(String[] args) {
         // Design Pattern: Singleton Here
-        Database database = Database.getInstance(null);
+        Account adminAccount = new Account("admin", "admin", "admin");
+        Account[] accounts = {adminAccount};
+        Database database = Database.getInstance(accounts);
+        
         try (Scanner read = new Scanner(System.in)) {
             Menu.printWelcome();
             do {
@@ -24,6 +27,7 @@ public class UnikutMain {
                     boolean verifyPass;
                     int position = 0;
                     String loginSession;
+                    String password;
                     Account user;
                     try {
 
@@ -31,7 +35,7 @@ public class UnikutMain {
                             Menu.printEnterYourLogin();
                             loginSession = read.next();
                             Menu.printEnterYourPassword();
-                            String password = read.next();
+                            password = read.next();
                             verifyPass = LoginAndPasswordAlreadyExists.verify(loginSession, password, database);
                             if (!verifyPass) {
                                 throw new RuntimeException("Login ou senha incorretos!");
@@ -54,52 +58,59 @@ public class UnikutMain {
                             Menu.printMenuSignIn();
                             int selectedOptionSignIn = read.nextInt();
                             String nameFriend;
-                            switch (selectedOptionSignIn) {
-                                case 1: {
-                                    Menu.printEnterYourName();
-                                    String newName = read.next();
-                                    Menu.printLine();
-                                    AccountController.updateName(newName, loginSession, database);
-                                    break;
-                                }
-                                case 2: {
-                                    Menu.printEnterNewPassword();
-                                    String newPassword = read.next();
-                                    Menu.printLine();
-                                    AccountController.updatePassword(newPassword, loginSession, database);
-                                    break;
-                                }
-                                case 3: {
-                                    boolean verify;
-                                    try {
-                                        do {
-                                            Menu.printSearchUserByLogin();
-                                            nameFriend = read.next();
-                                            verify = VerifyUserFriend.execute(loginSession, nameFriend, database);
 
-                                            if (verify) {
-                                                VerifyInvited.execute(position, nameFriend, database);
-                                            }
+                            if(loginSession == "admin" && password == "admin"){
+                                Menu.printAdmin(sizeDatabase);
 
-                                            Menu.printLine();
-                                        } while (!verify);
+                            } else{
+                                switch (selectedOptionSignIn) {
+                                    case 1: {
+                                        Menu.printEnterYourName();
+                                        String newName = read.next();
+                                        Menu.printLine();
+                                        AccountController.updateName(newName, loginSession, database);
                                         break;
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
                                     }
+                                    case 2: {
+                                        Menu.printEnterNewPassword();
+                                        String newPassword = read.next();
+                                        Menu.printLine();
+                                        AccountController.updatePassword(newPassword, loginSession, database);
+                                        break;
+                                    }
+                                    case 3: {
+                                        boolean verify;
+                                        try {
+                                            do {
+                                                Menu.printSearchUserByLogin();
+                                                nameFriend = read.next();
+                                                verify = VerifyUserFriend.execute(loginSession, nameFriend, database);
+
+                                                if (verify) {
+                                                    VerifyInvited.execute(position, nameFriend, database);
+                                                }
+
+                                                Menu.printLine();
+                                            } while (!verify);
+                                            break;
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    case 4:
+                                        ListingFriends.execute(position, database);
+                                        break;
+                                    case 5:
+                                        VerifyPendingInvitations.execute(position, database);
+                                        break;
+                                    case 6:
+                                        ListingMessages.execute(position, database);
+                                        break;
+                                    case 7:
+                                        session = false;
+                                        break;
+
                                 }
-                                case 4:
-                                    ListingFriends.execute(position, database);
-                                    break;
-                                case 5:
-                                    VerifyPendingInvitations.execute(position, database);
-                                    break;
-                                case 6:
-                                    ListingMessages.execute(position, database);
-                                    break;
-                                case 7:
-                                    session = false;
-                                    break;
                             }
                         } while (session);
                     } catch (Exception e) {
