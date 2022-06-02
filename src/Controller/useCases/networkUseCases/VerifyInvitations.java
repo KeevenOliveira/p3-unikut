@@ -16,7 +16,7 @@ public class VerifyInvitations {
         } else {
             for (int j = 0; j < accounts[positionUser].getInvitations().length; j++) {
                 if (Objects.equals(accounts[positionUser].getInvitations()[j], nameFriend)) {
-                    Menu.printPendigFriendship();
+                    Menu.printPendingFriendship();
                     cont = 1;
                 }
             }
