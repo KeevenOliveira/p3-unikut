@@ -80,12 +80,23 @@ public class Menu {
     public static void printMenuSignInAndSignUp() {
         System.out.println("\n--- Menu Principal ---");
         System.out.println("1 - Login");
-        System.out.println("2 - Cadastrar novo usuário");
-        System.out.println("3 - Sair do Unikut");
+        System.out.println("2 - Cadastrar novo usuário gratuito");
+        System.out.println("3 - Cadastrar novo usuário Premium");
+        System.out.println("4 - Sair do Unikut");
         System.out.println("--> Digite uma das opções: ");
     }
 
-    public static void printMenuSignIn() {
+    public static void printMenuSignInFree() {
+        System.out.println("\n--> O que deseja fazer agora? ");
+        System.out.println("1 - Atualizar nome");
+        System.out.println("2 - Atualizar password");
+        System.out.println("3 - Procurar usuário");
+        System.out.println("4 - Ver lista de amigos");
+        System.out.println("5 - Solicitação de amizades pendentes");
+        System.out.println("6 - Logout");
+
+    }
+    public static void printMenuSignInPremium() {
         System.out.println("\n--> O que deseja fazer agora? ");
         System.out.println("1 - Atualizar nome");
         System.out.println("2 - Atualizar password");
@@ -94,7 +105,6 @@ public class Menu {
         System.out.println("5 - Solicitação de amizades pendentes");
         System.out.println("6 - Ler mensagens recebidas");
         System.out.println("7 - Logout");
-
     }
 
     public static void printMenuNoFriend() {

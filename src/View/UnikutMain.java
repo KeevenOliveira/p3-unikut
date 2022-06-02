@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 import Controller.*;
 import Controller.Database.Database;
-import Controller.useCases.*;
-import Model.Account;
+import Model.*;
 
 public class UnikutMain {
     public static void main(String[] args) {
@@ -24,7 +23,6 @@ public class UnikutMain {
                     String loginSession;
                     Account user;
                     try {
-
                         do {
                             Menu.printEnterYourLogin();
                             loginSession = read.next();
@@ -47,61 +45,114 @@ public class UnikutMain {
                             Menu.printAdmin(database.size(), AccountController.getAllAccounts(database));
 
                         } else {
-                            boolean session = true;
-                            do {
-                                Menu.printMenuSignIn();
-                                int selectedOptionSignIn = read.nextInt();
-                                String nameFriend;
-                                switch (selectedOptionSignIn) {
-                                    case 1: {
-                                        Menu.printEnterYourName();
-                                        String newName = read.next();
-                                        Menu.printLine();
-                                        AccountController.updateName(newName, loginSession, database);
-                                        break;
-                                    }
-                                    case 2: {
-                                        Menu.printEnterNewPassword();
-                                        String newPassword = read.next();
-                                        Menu.printLine();
-                                        AccountController.updatePassword(newPassword, loginSession, database);
-                                        break;
-                                    }
-                                    case 3: {
-                                        boolean verify;
-                                        try {
-                                            do {
-                                                Menu.printSearchUserByLogin();
-                                                nameFriend = read.next();
-                                                verify = InteractionsController.verifyUserFriend(loginSession,
-                                                        nameFriend,
-                                                        database);
-
-                                                if (verify) {
-                                                    NetworkController.verifyInvited(position, nameFriend, database);
-                                                }
-
-                                                Menu.printLine();
-                                            } while (!verify);
+                            if (user.getCode().equals("free")) {
+                                boolean session = true;
+                                do {
+                                    Menu.printMenuSignInFree();
+                                    int selectedOptionSignIn = read.nextInt();
+                                    String nameFriend;
+                                    switch (selectedOptionSignIn) {
+                                        case 1: {
+                                            Menu.printEnterYourName();
+                                            String newName = read.next();
+                                            Menu.printLine();
+                                            AccountController.updateName(newName, loginSession, database);
                                             break;
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
                                         }
+                                        case 2: {
+                                            Menu.printEnterNewPassword();
+                                            String newPassword = read.next();
+                                            Menu.printLine();
+                                            AccountController.updatePassword(newPassword, loginSession, database);
+                                            break;
+                                        }
+                                        case 3: {
+                                            boolean verify;
+                                            try {
+                                                do {
+                                                    Menu.printSearchUserByLogin();
+                                                    nameFriend = read.next();
+                                                    verify = InteractionsController.verifyUserFriend(loginSession,
+                                                            nameFriend,
+                                                            database);
+
+                                                    if (verify) {
+                                                        NetworkController.verifyInvited(position, nameFriend, database);
+                                                    }
+
+                                                    Menu.printLine();
+                                                } while (!verify);
+                                                break;
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                        case 4:
+                                            NetworkController.listingFriends(position, database);
+                                            break;
+                                        case 5:
+                                            NetworkController.verifyPendingInvitations(position, database);
+                                            break;
+                                        case 6:
+                                            session = false;
+                                            break;
                                     }
-                                    case 4:
-                                        NetworkController.listingFriends(position, database);
-                                        break;
-                                    case 5:
-                                        NetworkController.verifyPendingInvitations(position, database);
-                                        break;
-                                    case 6:
-                                        NetworkController.listingMessages(position, database);
-                                        break;
-                                    case 7:
-                                        session = false;
-                                        break;
-                                }
-                            } while (session);
+                                } while (session);
+                            } else if (user.getCode().equals("premium")) {
+                                boolean session = true;
+                                do {
+                                    Menu.printMenuSignInPremium();
+                                    int selectedOptionSignIn = read.nextInt();
+                                    String nameFriend;
+                                    switch (selectedOptionSignIn) {
+                                        case 1: {
+                                            Menu.printEnterYourName();
+                                            String newName = read.next();
+                                            Menu.printLine();
+                                            AccountController.updateName(newName, loginSession, database);
+                                            break;
+                                        }
+                                        case 2: {
+                                            Menu.printEnterNewPassword();
+                                            String newPassword = read.next();
+                                            Menu.printLine();
+                                            AccountController.updatePassword(newPassword, loginSession, database);
+                                            break;
+                                        }
+                                        case 3: {
+                                            boolean verify;
+                                            try {
+                                                do {
+                                                    Menu.printSearchUserByLogin();
+                                                    nameFriend = read.next();
+                                                    verify = InteractionsController.verifyUserFriend(loginSession,
+                                                            nameFriend,
+                                                            database);
+                                                    if (verify) {
+                                                        NetworkController.verifyInvited(position, nameFriend, database);
+                                                    }
+                                                    Menu.printLine();
+                                                } while (!verify);
+                                                break;
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                        case 4:
+                                            NetworkController.listingFriends(position, database);
+                                            break;
+                                        case 5:
+                                            NetworkController.verifyPendingInvitations(position, database);
+                                            break;
+                                        case 6:
+                                            NetworkController.listingMessages(position, database);
+                                            break;
+                                        case 7:
+                                            session = false;
+                                            break;
+                                    }
+                                } while (session);
+                            }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -131,12 +182,41 @@ public class UnikutMain {
                         Menu.printCreateYourPassword();
                         String password = read.next();
 
-                        Account user = new Account(login, name, password);
+                        Account user = new UserFree(login, name, password);
                         AccountController.createNewAccount(user, database);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else if (selected == 3) {
+                    try {
+                        boolean verifyTwo;
+                        String login;
+                        do {
+                            Menu.printCreateYourLogin();
+                            login = read.next();
+
+                            verifyTwo = AccountController.loginAlreadyExists(login, database);
+
+                            if (verifyTwo) {
+                                throw new RuntimeException("Já existe usuário com este login!");
+                            }
+
+                        } while (verifyTwo);
+                        Menu.printEnterYourName();
+                        String name = read.next();
+
+                        if (name.trim().equals("")) {
+                            name = "Convidado";
+                        }
+
+                        Menu.printCreateYourPassword();
+                        String password = read.next();
+                        Account user = new UserPremium(login, name, password);
+                        AccountController.createNewAccount(user, database);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (selected == 4) {
                     Menu.printExit();
                     break;
                 } else {

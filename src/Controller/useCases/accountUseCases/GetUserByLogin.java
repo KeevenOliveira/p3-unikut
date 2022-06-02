@@ -1,7 +1,7 @@
 package Controller.useCases.accountUseCases;
 
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 import java.util.Objects;
 
 public class GetUserByLogin {

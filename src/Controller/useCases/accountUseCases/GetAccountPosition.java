@@ -2,7 +2,7 @@ package Controller.useCases.accountUseCases;
 
 import java.util.Objects;
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 
 public class GetAccountPosition {
     public static int execute(String login, Database database) {

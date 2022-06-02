@@ -1,7 +1,7 @@
 package Controller.useCases.networkUseCases;
 
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 import View.Menu;
 
 public class ListingMessages {

@@ -3,7 +3,7 @@ package Controller.useCases.accountUseCases;
 import java.util.Objects;
 
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 
 public class LoginAlreadyExists {
 

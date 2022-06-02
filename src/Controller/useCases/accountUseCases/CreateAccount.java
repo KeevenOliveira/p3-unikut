@@ -1,7 +1,7 @@
 package Controller.useCases.accountUseCases;
 
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 import View.Menu;
 public class CreateAccount {
     public static void execute(Account account, Database database){

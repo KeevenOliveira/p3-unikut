@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 
 public class SendMessage {
 

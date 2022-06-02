@@ -4,7 +4,7 @@ import java.util.Objects;
 import View.Menu;
 
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 
 public class UpdateNameAccount {
     public static void execute(String name, String login, Database database) {

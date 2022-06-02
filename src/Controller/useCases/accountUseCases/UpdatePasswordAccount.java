@@ -2,7 +2,7 @@ package Controller.useCases.accountUseCases;
 
 import java.util.Objects;
 import Controller.Database.Database;
-import Model.Account;
+import Model.*;
 import View.Menu;
 
 public class UpdatePasswordAccount {

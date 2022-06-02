@@ -1,12 +1,13 @@
 package Model;
 
-public class Account {
+public abstract class Account {
     protected String login;
     protected String name;
     protected String password;
     protected String[] friends;
     protected String[] invitations;
     protected String[] invited;
+    protected String code;
     protected String[] messageList;
     protected String[] messageWriters;
 
@@ -16,13 +17,9 @@ public class Account {
         this.password = password;
     }
 
-    public String[] getMessageList() { return this.messageList; }
+    public Account() {
 
-    public void setMessageList(String[] messageList) { this.messageList = messageList; }
-
-    public String[] getMessageWriters() { return this.messageWriters; }
-
-    public void setMessageWriters(String[] messageWriters) { this.messageWriters = messageWriters; }
+    }
 
     public String[] getFriends() { return this.friends; }
 
@@ -53,5 +50,16 @@ public class Account {
     public String getPassword() { return this.password; }
 
     public void setPassword(String password) { this.password = password; }
+
+    public String getCode() { return code; }
+
+    public String[] getMessageList() { return this.messageList; }
+
+    public void setMessageList(String[] messageList) { this.messageList = messageList; }
+
+    public String[] getMessageWriters() { return this.messageWriters; }
+
+    public void setMessageWriters(String[] messageWriters) { this.messageWriters = messageWriters; }
+
 
 }
