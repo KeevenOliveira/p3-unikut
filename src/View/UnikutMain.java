@@ -150,6 +150,12 @@ public class UnikutMain {
                                         case 7:
                                             session = false;
                                             break;
+                                        default:
+                                            try {
+                                                throw new RuntimeException("Opção inválida");
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
                                     }
                                 } while (session);
                             }
