@@ -43,6 +43,7 @@ public class VerifyPendingInvitations {
                 Menu.printMenuAcceptFriend();
                 int selected = sc.nextInt();
                 if (selected == 1) {
+                    System.out.println("Digite o nome do usuário:");
                     String nameUser = sc.next();
                     AcceptFriendShip.execute(positionUser, nameUser, database);
                 }
